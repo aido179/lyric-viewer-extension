@@ -12,7 +12,7 @@
   },
 
   "permissions": [
-          "tabs","storage"
+          "tabs","storage","contextMenus"
         ],
   "background": {
     "scripts": ["background.js"],
