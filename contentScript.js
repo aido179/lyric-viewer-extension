@@ -114,6 +114,7 @@ $(document).ready(function(){
 
 // watch keystrokes for key based scrolling
 $(document).keydown(function(e){
+  if ($("#lyric_viewer_extension_content_container").length === 0) return
   if ($("#lyric_viewer_extension_content_container").hasClass("lyric_viewer_extension_content_scaled") ) return
   var forwardKeys = [32, 39] // space and right arrow
   if(forwardKeys.indexOf(e.keyCode) !== -1) {
