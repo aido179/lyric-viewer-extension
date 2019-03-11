@@ -105,6 +105,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 $(document).ready(function(){
   // watch text selection to populate lyrics
   $(":not(#lyric_viewer_extension_content)").on('mouseup', function(event){
+    event.stopPropagation()
+    // Don't do anything if the extension isn't active.
+    if ($("#lyric_viewer_extension_content_container").length === 0) return
     // Don't update the selected text when the viewer is clicked.
     if( event.target.id === "lyric_viewer_extension_content") return
     if( $(event.target).hasClass('lyric_viewer_extension_no_select') ) return
@@ -133,20 +136,29 @@ $(document).keydown(function(e){
 function updateSelection(targetInput){
   // Allow an optional targetInput argument to update the currently selected target.
   // otherwise, use the existing one.
-
   if (targetInput === false || targetInput === undefined){
     target = selectionTarget
   } else {
     selectionTarget = targetInput
     target = targetInput
   }
-  var content  = {}
+  // Get content based on the selectionRange
+  var content = {}
   if (selectionRange === 0) {
-    content = $(target).html()
+    content = $(target).clone()
   } else {
-    content = $(target).parents().eq(selectionRange).html()
+    content = $(target).parents().eq(selectionRange).clone()
   }
-  $('#lyric_viewer_extension_content').html(content)
+  // Remove extra styles
+  removeInlineStylesFromAllDescendants(content)
+  // Update the content
+  $('#lyric_viewer_extension_content').empty().append(content)
+}
+
+function removeInlineStylesFromAllDescendants(element){
+  $(element).find('[style]').each(function( index ) {
+    $( this ).removeAttr('style');
+  });
 }
 
 function updatePage(pageInc) {
