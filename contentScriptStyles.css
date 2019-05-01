@@ -8,7 +8,7 @@
   margin-right: auto;
   background-color: #fff;
   border: solid black 3px;
-  z-index: 9999;
+  z-index: 8888;
 }
 #lyric_viewer_extension_content_cover{
   position:absolute;
@@ -35,7 +35,7 @@
 }
 #lyric_viewer_extension_selection_controls{
   position:fixed;
-  width:200px;
+  width:300px;
   height:400px;
   bottom:0;
   right:0;
@@ -43,10 +43,66 @@
   border: solid black 3px;
   z-index: 9999;
   text-align: center;
+  padding-top:1em;
+}
+#lyric_viewer_extension_selection_controls a{
+  display: block;
+  margin-bottom: 0em;
+}
+#lyric_viewer_extension_selection_controls p{
+  text-align: left;
+}
+#lyric_viewer_extension_selection_controls_minified{
+  display: none;
+  position:fixed;
+  width:50px;
+  height:25px;
+  bottom:0;
+  right:0;
+  background-color: #fff;
+  border: solid black 3px;
+  z-index: 9999;
+  text-align: center;
+}
+#lyric_viewer_extension_instructions_container{
+  position: fixed;
+  left: 50%;
+  top:50%;
+  z-index: 9999;
+  transform: translate(-50%);
+  background-color: rgba(0, 0, 0, 0.74);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px black;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+#lyric_viewer_extension_content_instructions{
+  position: fixed;
+  left: 0;
+  right:0;
+  bottom:-100px;
+  z-index:9999;
+  background-color: rgba(0, 0, 0, 0.74);
+  font-size: 80px;
+  line-height: 100px;
+  font-weight: bold;
+  color: white;
+  display: block;
+  text-align: center;
+}
+.lyric_viewer_extension_content_instructions_hide{
+  display: none;
 }
 
 
 .lyric_viewer_extension_content_scaled{
   transform-origin: top right;
   transform: scale(0.3);
+}
+
+/* Override www.lyrics.com font-size styles. */
+pre{
+  font-size: inherit !important;
 }
