@@ -27,6 +27,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       teardownViewer()
     }
   }
+  return true;
 });
 
 $(document).ready(function(){
